@@ -1,0 +1,12 @@
+{
+    "name": "arash/mousephp",
+    "description": "A Minimal PHP Framework",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Arash\\Mousephp\\": "src/"
+        }
+    },
+    "require": {}
+}
