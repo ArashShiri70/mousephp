@@ -16,6 +16,11 @@ class Route
         self::$routes['GET'][$path] = $callback;
     }
 
+    public static function post(string $path, array $callback)
+    {
+        self::$routes['POST'][$path] = $callback;
+    }
+
     /**
      * Resolves the current route based on request URI and method.
      *
