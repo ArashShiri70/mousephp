@@ -1,9 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../core/Route.php';
+require_once __DIR__ . '/../app/controllers/HomeController.php';
 
-use Core\Route;
+use core\Route;
+use app\controllers\HomeController;
 
-Route::get('/', function () {
-    echo "Hello World! This Is Main Page 🐭";
-});
+Route::get('/', [HomeController::class, 'index']);

@@ -1,16 +1,30 @@
 <?php
 
-namespace Core;
+namespace core;
 
 class Route
 {
+    // Stores all defined routes based on HTTP method
     private static array $routes = [];
 
-    public static function get(string $path, callable $callback)
+    /**
+     * ✅ SRP (Single Responsibility Principle):
+     * This method only registers GET routes.
+     */
+    public static function get(string $path, array $callback)
     {
         self::$routes['GET'][$path] = $callback;
     }
 
+    /**
+     * Resolves the current route based on request URI and method.
+     *
+     * ✅ OCP (Open/Closed Principle):
+     * - This method is open to handle both closures and controller class methods.
+     *
+     * ✅ DIP (Dependency Inversion Principle):
+     * - It doesn't depend on how the callback is structured (function or class).
+     */
     public static function resolve(string $requestUri, string $method)
     {
         $callback = self::$routes[$method][$requestUri] ?? null;
@@ -21,6 +35,14 @@ class Route
             return;
         }
 
-        call_user_func($callback);
+        // If callback is like [ControllerClass::class, 'method']
+        if (is_array($callback)) {
+            $controller = new $callback[0]();   // Instantiate the controller class
+            $method = $callback[1];            // Get the method name
+            $controller->$method($requestUri);
+        } else {
+            // If callback is a closure (anonymous function)
+            call_user_func($callback);
+        }
     }
 }
