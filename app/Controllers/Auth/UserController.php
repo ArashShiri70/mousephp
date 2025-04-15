@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\auth;
+namespace App\Controllers\Auth;
 
 class UserController
 {

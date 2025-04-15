@@ -1,12 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../core/Route.php';
-require_once __DIR__ . '/../app/controllers/HomeController.php';
-require_once __DIR__ . '/../app/controllers/Auth/UserController.php';
-
-use core\Route;
-use app\controllers\HomeController;
-use app\controllers\auth\UserController;
+use Core\Route;
+use App\Controllers\HomeController;
+use App\Controllers\Auth\UserController;
 
 Route::get('/', [HomeController::class, 'index']);
 

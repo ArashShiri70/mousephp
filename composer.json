@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Arash\\Mousephp\\": "src/"
+            "Core\\": "core/",
+            "App\\": "app/"
         }
     },
     "require": {}
