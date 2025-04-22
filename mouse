@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+$command = $argv[1] ?? null;
+
+switch ($command) {
+    case 'make:migration':
+        $name = $argv[2] ?? null;
+        if (empty($name)) {
+            echo "Migration name is required\n";
+            break;
+        }
+        $snakeName = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name));
+        $timestamp = date('Y_m_d_His');
+        $filename = "{$timestamp}_{$snakeName}.php";
+        file_put_contents(__DIR__ . "/database/migrations/{$filename}", "");
+        echo "Migration created: $filename\n";
+        break;
+
+    default:
+        echo "Unknown command: $command\n";
+        echo "Available commands: make:migration\n";
+}
