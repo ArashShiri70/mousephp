@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Core\View;
 class HomeController
 {
     /**
@@ -10,6 +11,6 @@ class HomeController
      */
     public function index(): void
     {
-        echo "Hello from HomeController 🐭";
+        View::render('home');
     }
 }
